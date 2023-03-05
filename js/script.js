@@ -9,37 +9,47 @@ if(wordCountInput) {
 		var sentence = "";
 		var	word = "";
 		var letter = "";
-		if( inputVal && inputVal != "" ){
-			paragraph = inputVal.split("\n\n").length;
-			sentence = inputVal.split(". ").length;
+		if(inputVal != ""){
+			paragraph = inputVal.split("\n\n").length - 1;
+			sentence = inputVal.split(".").length - 1;
 			word = inputVal.split(" ").length;
 			letter = inputVal.length;
+		} else {
+			paragraph = 0;
+			sentence = 0;
+			word = 0;
+			letter = 0;
+		}
 
-			var resultBox = document.getElementsByClassName('word-counter-result-row');
+		var resultBox = document.getElementsByClassName('word-counter-result-row');
 
-			var texts = new Array(
-				'paragraph',
-				'sentence',
-				'word',
-				'letter',
-			);
+		var texts = new Array(
+			'paragraph',
+			'sentence',
+			'word',
+			'letter',
+		);
 
-			var values = new Array(
-				paragraph,
-				sentence,
-				word,
-				letter,
-			);
+		var values = new Array(
+			paragraph,
+			sentence,
+			word,
+			letter,
+		);
 
-			for (var i = 0; i < resultBox.length; i++) {
-				var currentRow = resultBox[i];
+		for (var i = 0; i < resultBox.length; i++) {
+			var currentRow = resultBox[i];
 
-				if( values[i] != 1 ){
-					texts[i] += "s";
-				}
-
-				currentRow.innerHTML = values[i] + " " + texts[i];
+			if( values[i] != 1 ){
+				texts[i] += "s";
 			}
+
+			var break_flag = " <strong>|</strong>";
+			if( i == resultBox.length-1 ){
+				break_flag = "";
+			}
+			
+			currentRow.innerHTML = values[i] + " " + texts[i] + break_flag;
 		}
 	});
  }
