@@ -11,7 +11,7 @@ if(wordCountInput) {
 		var letter = "";
 		if(inputVal != ""){
 			paragraph = inputVal.split("\n\n").length - 1;
-			sentence = inputVal.split(".").length - 1;
+			sentence = inputVal.split(/[.!?]/).filter(Boolean).length - 1;
 			word = inputVal.split(" ").length;
 			letter = inputVal.length;
 		} else {
